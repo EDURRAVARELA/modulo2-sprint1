@@ -1,0 +1,64 @@
+.bg-purple{
+    background-color: rgb(199, 43, 104)
+}
+.bg-purple-50{
+    background-color:rgba(199, 43, 103, 0.563) ;
+}
+.logo{
+    height: 3.3rem;
+}
+
+.cardDiv{
+    display: flex;
+    flex-direction: row;
+}
+.links{
+    height: 3rem;
+}
+footer{
+    min-height: 12vh;
+}
+.button-details{
+box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+.form-contact{
+    height: 48vh;
+    margin: 10vh;
+}
+.input-message{
+    height: 7rem;
+}
+.send-buttom{
+    align-self: flex-end;
+}
+.table-stats{
+    min-height: 66vh;
+}
+.head-table{
+    background-color:rgba(199, 43, 103, 0.748);
+}
+.main-details{
+    min-height: 79vh;
+}
+@media only screen and (max-width:568px){
+    
+    .search-bar-md{
+        flex-direction: column-reverse;
+        padding-left: 2.5vh;
+        padding-right: 2.5vh;
+    }
+    td, label{
+        font-size: 0.7rem;
+    }
+    
+}
+@media only screen and (min-width:568px) and (max-width: 767px){
+    .search-bar-md{
+        flex-direction: column-reverse;
+        padding-left: 2.5vh;
+        padding-right: 2.5vh;
+    }
+}
+@media only screen and (min-width:768px) {    
+
+}

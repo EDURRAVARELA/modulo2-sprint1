@@ -1,13 +1,27 @@
+body{
+    background: rgb(199,186,62);
+background: linear-gradient(90deg, rgba(199,186,62,0.78) 19%, rgba(22,168,199,0.78) 84%);
+}
 .bg-purple{
-    background-color: rgb(199, 43, 104)
+    background-color: rgb(20, 104, 122)
 }
 .bg-purple-50{
-    background-color:rgba(199, 43, 103, 0.563) ;
+    background-color:rgba(22, 166, 199, 0.781) ;
+}
+.bg-mustard{
+    background-color: rgb(199, 186, 62);
 }
 .logo{
     height: 3.3rem;
 }
+a{
+    text-align: center;
+}
 
+.bg-purple-dark{
+    background-color: rgb(122, 13, 57);
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
 .cardDiv{
     display: flex;
     flex-direction: row;

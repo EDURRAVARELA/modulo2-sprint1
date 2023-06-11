@@ -17,6 +17,9 @@ background: linear-gradient(90deg, rgba(199,186,62,0.78) 19%, rgba(22,168,199,0.
 a{
     text-align: center;
 }
+main{
+    min-height: 70vh;
+}
 
 .bg-purple-dark{
     background-color: rgb(122, 13, 57);

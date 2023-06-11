@@ -1,8 +1,8 @@
-console.log(data);
 
-let cards = document.getElementById("card")
+const cards = document.getElementById("card")
+const categorySelector = document.getElementById("categorySelector")
+const nameSelector = document.getElementById("nameSelector")
 
-console.log([cards])
 
 function createCard(object){
     return `<div class="col">
@@ -14,7 +14,7 @@ function createCard(object){
       </div>
       <div class="card-body d-flex text-light justify-content-around align-items-end">
         <p>${object.price}</p>
-        <a href="./assets/pages/details.html"
+        <a href="./assets/pages/details.html?id=${object._id}"
           class="card-link bg-purple text-decoration-none text-light rounded-3 p-1 button-details">Details</a>
       </div>
     </div>
@@ -28,5 +28,60 @@ function displayCard(array, elementHTML){
     }
     elementHTML.innerHTML = template
 }
-
 displayCard(data.events, cards)
+
+
+
+const category = data.events.map( events => events.category )
+const categorySet = new Set( category )
+const categories = Array.from(categorySet)
+
+
+
+function createCategorySelector(array){
+       return `<div class="d-flex m-2">
+          <input type="checkbox" id="${array}" name="categories" value="${array}" />
+          <label for="${array}">${array}</label>
+        </div>`
+        
+}
+
+function displayCategories(array, elementHTML){
+  let template = ""
+  for (let eventCategory of array){
+      template += createCategorySelector(eventCategory)
+  }
+  elementHTML.innerHTML = template
+}
+
+displayCategories(categories, categorySelector)
+
+
+categorySelector.addEventListener('change', event => {
+  const filteredEvents = filterByCheck(data.events)
+  displayCard(filteredEvents, cards)
+} ) 
+
+function filterByCheck( array){
+  const checkbox = Array.from( document.querySelectorAll('input[type=checkbox]:checked') ).map( check => check.value)
+  if (checkbox.length == 0){
+    return array
+  }else {
+  const filteredEvents = data.events.filter( event => checkbox.includes( event.category))
+  return filteredEvents
+  }
+}
+
+nameSelector.addEventListener('input', event => {
+  const search = event.target.value
+  const filteredEvents = filterByCheck(data.events)
+  let eventfilteredByName = []
+for (let event of filteredEvents)
+    if (event.name.includes(search)){
+    eventfilteredByName.push(event)
+    }
+    displayCard(eventfilteredByName, cards)
+})
+
+  
+

@@ -58,23 +58,13 @@
   </header>
   <main>
     <div class="d-flex justify-content-around align-items-center search-bar search-bar-md">
-      <form action="">
-        <fieldset>
-          <input type="checkbox" id="category1" name="categories" value="category1" />
-          <label for="category1">Category</label>
-          <input type="checkbox" id="category2" name="categories" value="category2" />
-          <label for="category2">Category</label>
-          <input type="checkbox" id="category3" name="categories" value="category3" />
-          <label for="category3">Category</label>
-          <input type="checkbox" id="category4" name="categories" value="category4" />
-          <label for="category4">Category</label>
-          <input type="checkbox" id="category5" name="categories" value="category5" />
-          <label for="category5">Category</label>
-        </fieldset>
+      <form id="categorySelector" class="d-flex flex-wrap">
+        
       </form>
-      <form class="d-flex m-2" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-        <button class="btn btn-outline-dark" type="submit">Search</button>
+      <form class="d-flex m-2" id="nameSelector">
+        <div>
+          <input class="form-control me-2" type="search" placeholder="Search by name" aria-label="Search"/>
+        </div>
       </form>
     </div>
     <div id="card" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 m-3">

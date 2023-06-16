@@ -1,8 +1,25 @@
-let baseDate = new Date(data.currentDate);
-
 const upcomingEventsCards = document.getElementById('upcomingEventsCard')
 const categorySelector = document.getElementById("categorySelector")
 const nameSelector = document.getElementById("nameSelector")
+
+let baseDate 
+let events
+let category
+let categorySet
+let categories
+fetch ('https://mindhub-xj03.onrender.com/api/amazing')
+.then( response => response. json() )
+.then( data =>{
+baseDate = new Date(data.currentDate)
+events = data.events
+displayCard(events, upcomingEventsCards)
+category = events.map( events => events.category)
+categorySet = new Set( category)
+categories = Array.from(categorySet)
+displayCategories(categories, categorySelector)
+})
+.catch(err => console. log(err))
+
 
 function createCard(object){
     return `<div class="col">
@@ -13,7 +30,7 @@ function createCard(object){
         <p class="card-text">${object.description}</p>
       </div>
       <div class="card-body d-flex text-light justify-content-around align-items-end">
-        <p>${object.price}</p>
+        <p>${object.price}$</p>
         <a href="./details.html?id=${object._id}"
           class="card-link bg-purple text-light text-decoration-none rounded-3 p-1 button-details">Details</a>
       </div>
@@ -24,20 +41,19 @@ let eventDate
 
 function displayCard(array, elementHTML){
   let template = "" 
-  for (let event of array){
-    eventDate = new Date(event.date)
-    if( baseDate < eventDate){
-        template += createCard(event)
-    
-    elementHTML.innerHTML = template
-    }
-}
-}
-displayCard(data.events, upcomingEventsCards)
-
-const category = data.events.map( events => events.category )
-const categorySet = new Set( category )
-const categories = Array.from(categorySet)
+  if (array.length > 0){
+    for (let event of array){
+      eventDate = new Date(event.date)
+      if( baseDate < eventDate){
+          template += createCard(event)
+      
+      elementHTML.innerHTML = template
+      }
+      }
+  }else {
+    elementHTML.innerHTML = `<h2>There are no events that meet your search criteria. </h2>`
+  }
+  }
 
 
 
@@ -57,11 +73,10 @@ function displayCategories(array, elementHTML){
   elementHTML.innerHTML = template
 }
 
-displayCategories(categories, categorySelector)
 
 
 categorySelector.addEventListener('change', event => {
-  const filteredEvents = filterByCheck(data.events)
+  const filteredEvents = filterByCheck(events)
   displayCard(filteredEvents, upcomingEventsCards)
 } ) 
 
@@ -70,16 +85,15 @@ function filterByCheck( array){
   if (checkbox.length == 0){
     return array
   }else {
-    const filteredEvents = data.events.filter( event => checkbox.includes( event.category))
+    const filteredEvents = events.filter( event => checkbox.includes( event.category))
     return filteredEvents
   
   }
 }
 
-
 nameSelector.addEventListener('input', event => {
   const search = event.target.value
-  const filteredEvents = filterByCheck(data.events)
+  const filteredEvents = filterByCheck(events)
   let eventfilteredByName = []
 for (let event of filteredEvents)
     if (event.name.includes(search)){
@@ -87,3 +101,4 @@ for (let event of filteredEvents)
     }
     displayCard(eventfilteredByName, upcomingEventsCards)
 })
+

@@ -3,11 +3,13 @@ const card = document.getElementById("card")
 const params = new URLSearchParams( location.search )
 
 const id = params.get("id")
-console.log(id)
 
-const eventDetails = data.events.find( element => element._id == id )
-
-
+let eventDetails = data.events.find( element => element._id == id )
+fetch ('https://mindhub-xj03.onrender.com/api/amazing')
+.then( response => response. json() )
+.then( data =>{
+events = data.events
+eventDetails = data.events.find( element => element._id == id )
 card.innerHTML =
 `<div class="row g-0">
         <div class="col-md-4 d-flex align-items-center justify-content-center p-2">
@@ -20,9 +22,11 @@ card.innerHTML =
             <p class="card-text">${eventDetails.description}</p>
             <p class="card-text">Category:${eventDetails.category}</p>
             <p class="card-text">Place:${eventDetails.place}</p>
-            <p class="card-text">Capacity:${eventDetails.assistance}</p>
-            <p class="card-text">Assistance:${eventDetails.assistance}</p>
-            <p class="card-text">Price:${eventDetails.price}</p>
+            <p class="card-text">Capacity:${eventDetails.capacity}</p>
+            <p class="card-text">Price:${eventDetails.price}$</p>
           </div>
         </div>
       </div>`
+})
+.catch(err => console. log(err))
+

@@ -170,7 +170,7 @@ export function revenuesStatisticsPast(array, category){
   let results = []
   for(let i=0; i<category.length; i++){
       let revenueByCategory = {
-          revenue: (parseFloat(revenuesPerCategoryPast(array, category[i]))).toLocaleString()
+          revenue: revenuesPerCategoryPast(array, category[i])
       }
       results.push(revenueByCategory);
   }

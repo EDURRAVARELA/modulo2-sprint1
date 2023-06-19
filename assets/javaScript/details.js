@@ -1,10 +1,11 @@
 const card = document.getElementById("card")
 
 const params = new URLSearchParams( location.search )
+console.log(params)
 
 const id = params.get("id")
 
-let eventDetails = data.events.find( element => element._id == id )
+let eventDetails
 fetch ('https://mindhub-xj03.onrender.com/api/amazing')
 .then( response => response. json() )
 .then( data =>{
